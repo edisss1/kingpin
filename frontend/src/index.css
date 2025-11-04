@@ -2,6 +2,18 @@
 
 @import "tailwindcss";
 
+@theme {
+    --color-background: #faf7f5;
+    --color-primary: #d68c45;
+    --color-primary-pressed: #f5af6b;
+    --color-disabled: #afafae;
+    --color-secondary: #f4e1d2;
+    --color-secondary-pressed: #fef5ee;
+    --color-text: #2c2c2c;
+    --color-accent: #a85d24;
+}
+
 body {
     font-family: "Poppins", sans-serif;
+    @apply bg-background text-text;
 }
