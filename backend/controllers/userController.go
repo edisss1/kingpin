@@ -32,6 +32,8 @@ func Signup() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		ctx, cancel := context.WithTimeout(context.Background(), 100*time.Second)
 
+		defer cancel()
+
 		var user models.User
 
 		if err := c.BindJSON(&user); err != nil {
@@ -53,7 +55,6 @@ func Signup() gin.HandlerFunc {
 			log.Panic(err)
 
 		}
-		defer cancel()
 
 		if count > 0 {
 			c.JSON(http.StatusBadRequest, gin.H{"error": "user already exists"})
@@ -87,6 +88,5 @@ func GetUser() gin.HandlerFunc {
 			return
 		}
 		c.JSON(http.StatusOK, user)
-
 	}
 }
